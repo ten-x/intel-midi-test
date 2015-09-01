@@ -3,7 +3,7 @@
  * NB! meant to run on Intel Edison
  */
 
-var Cylon = require('Cylon');
+var Cylon = require('cylon');
 var sys = require('sys');
 var express = require('express');
 
