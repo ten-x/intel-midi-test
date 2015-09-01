@@ -14,7 +14,7 @@ Cylon.robot({
     edison: {
       adaptor: 'intel-iot'
     },
-  }
+  },
 
   devices: {
     actC: {driver: 'led', pin: 6},
