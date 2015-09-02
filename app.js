@@ -8,9 +8,10 @@ var IMA = {};
 
 IMA.version = 0.1;
 IMA.config = {
-  env : (process.env.USER) ? 'pc' : 'edison' //on edison USER environment is not set, - this is a hacky way to see if we are running on edison or in dev. environment
+  env : (process.env.USER == 'root') ? 'edison' : 'pc' //on edison USER environment var is set to 'root' - so we use it to detect where we are running. //HACK
 };
 
+console.log(IMA.config.env);
 console.log(IMA.config.env);
 
 var Cylon = require('cylon');
