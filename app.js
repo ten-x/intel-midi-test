@@ -86,7 +86,7 @@ IMA.startActuators = function() {
       this.devices[deviceName].turnOn();
       setTimeout(function(){
         self.devices[deviceName].turnOff();
-      },500);
+      },100);
     },
 
     work: function(my) {
