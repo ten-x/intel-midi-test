@@ -6,11 +6,13 @@
   "author": "george.strakhov@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "cylon": "^1.1.0",
     "cylon-api-http": "^0.4.0",
     "cylon-gpio": "^0.26.0",
     "cylon-i2c": "^0.22.0",
     "cylon-intel-iot": "^0.7.0",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "jade": "^1.11.0"
   }
 }
