@@ -61,7 +61,7 @@ IMA.startWebServer = function() {
   app.listen(port)
 };
 
-IMA.startActators = function() {
+IMA.startActuators = function() {
   IMA.cylon = Cylon.robot({
     connections: {
       edison: {
