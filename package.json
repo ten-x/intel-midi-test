@@ -2,7 +2,10 @@
   "name": "intel-midi-test",
   "version": "0.0.1",
   "description": "",
-  "main": "app.js",
+  "main": "main.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "author": "george.strakhov@gmail.com",
   "license": "ISC",
   "dependencies": {
