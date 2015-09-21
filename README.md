@@ -13,3 +13,8 @@
 
 ## Links:
 * http://fab-lab.eu/edison/
+
+## Implement native pitch detection:
+
+1. `https://www.npmjs.com/package/node-core-audio`
+2. `https://www.npmjs.com/package/detect-pitch`
