@@ -10,3 +10,8 @@
 ## NB! How to make it run on boot:
 
 1. Place in `/node_app_slot` directory on Edison and it will be automatically picked up by XDK daemon
+
+## Implement native pitch detection:
+
+1. `https://www.npmjs.com/package/node-core-audio`
+2. `https://www.npmjs.com/package/detect-pitch`
