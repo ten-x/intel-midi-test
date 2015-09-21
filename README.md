@@ -10,3 +10,6 @@
 ## NB! How to make it run on boot:
 
 1. Place in `/node_app_slot` directory on Edison and it will be automatically picked up by XDK daemon
+
+## Links:
+* http://fab-lab.eu/edison/
