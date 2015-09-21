@@ -13,8 +13,10 @@
 
 ## Links:
 * http://fab-lab.eu/edison/
+* http://www.helios.de/heliosapp/edison/index.html
 
 ## Implement native pitch detection:
 
-1. `https://www.npmjs.com/package/node-core-audio`
-2. `https://www.npmjs.com/package/detect-pitch`
+1. install python and paudio: `https://communities.intel.com/docs/DOC-24006`
+1. `https://www.npmjs.com/package/node-core-audio` (looks like it requires portaudio http://pythonhackers.com/p/marcj/node-core-audio)
+1. `https://www.npmjs.com/package/detect-pitch`
