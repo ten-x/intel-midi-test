@@ -1,15 +1,23 @@
-# Intel midi to actuators test
+## Prepare
 
 1. Connect to our Intel Edison: `ssh root@192.168.1.56`, password: password
-2. `cd intel-midi-test`
-3. `git pull`, `npm install`, `bower install --allow-root`, `node main.js`
-4. In latest chrome browser go to http://192.168.1.56
-5. Make sure your MIDI device is connected and if you have more than one - correct one is selected
-6. Play your MIDI device and see actuators go off accordingly
+2. make sure node and portaudio are installed
+3. `cd intel-midi-test`
+4. `git pull`, `npm install`, `bower install --allow-root` 
 
-## NB! How to make it run on boot:
+## Intel Edison midi to actuators test
 
-1. Place in `/node_app_slot` directory on Edison and it will be automatically picked up by XDK daemon
+1. `node main.js`
+2. In latest chrome browser go to http://192.168.1.56
+3. Make sure your MIDI device is connected and if you have more than one - correct one is selected
+4. Play your MIDI device and see actuators go off accordingly
+
+## Intel Edison native pitch detection test
+
+1. `ctrl + c` to stop main.js
+2. make sure your usb sound card is connected and detected and mic input is ready
+3. `node pitch-detection.js` 
+4. whistle into the microphone and you should see actuators go off accordingly (whistling is recommended for it's the simplest / closes sine wave. accurate detection of sounds with more overtones such as guitar or singing is harder)
 
 ## Links:
 * http://fab-lab.eu/edison/
