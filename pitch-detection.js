@@ -8,7 +8,7 @@ IMA.config = {
 
 console.log(IMA.config.env);
 
-var coreaudio  = require('node-core-audio');
+var coreaudio  = require('node-core-audio-edison');
 var noteFromPitch = require('./note-from-pitch.js');
 var Cylon = require('cylon');
 var sys = require('sys');
