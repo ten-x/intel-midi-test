@@ -15,7 +15,6 @@
     "cylon-gpio": "^0.26.0",
     "cylon-i2c": "^0.22.0",
     "cylon-intel-iot": "^0.7.0",
-    "detect-pitch": "^1.1.0",
     "express": "^4.13.3",
     "jade": "^1.11.0",
     "node-core-audio": "^0.5.0",

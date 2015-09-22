@@ -1,8 +1,3 @@
-/*
- * basic app to run the express server and control GPIO based on user input in the browser
- * NB! meant to run on Intel Edison
- */
-
 //global object to put everything into
 var IMA = {};
 
@@ -13,53 +8,22 @@ IMA.config = {
 
 console.log(IMA.config.env);
 
+var coreaudio  = require('node-core-audio');
+var noteFromPitch = require('./note-from-pitch.js');
 var Cylon = require('cylon');
 var sys = require('sys');
-var express = require('express');
-var bodyParser = require('body-parser');
+var detectPitchWad = require('./detect-pitch-wad.js');
 
-var app = express();
-app.set('view engine', 'jade');
-//public assets
-app.use(express.static('public'));
-//serving static files from bower_components
-app.use('/vendor', express.static('bower_components'));
-//to enable POST request data reading
-app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-//need to detect environment and change config depending on whether we are running on a computer for testing or on Edison
-
+//kick things off
 IMA.init = function() {
   console.log('Starting up...');
-  //use forever to keep alive?
-  //start web server
-  IMA.startWebServer();
   if(IMA.config.env == 'edison') {
     IMA.startActuators();
   };
+  IMA.startAudioEngine();
 };
 
-IMA.startWebServer = function() {
-
-  app.get('/', function (req, res) {
-    res.render('index')
-  });
-
-  app.post('/api/v1/act/', function(req, res) {
-    if(IMA.config.env == 'edison') {
-      IMA.cylon.lightLedNote(req.body.tone);
-    }
-    console.log(req.body.tone);
-
-    res.send('OK');
-  });
-
-  var port = (IMA.config.env == 'edison') ? 80 : 3030;
-
-  app.listen(port)
-};
-
+//start actuators via cylon.js
 IMA.startActuators = function() {
   IMA.cylon = Cylon.robot({
     connections: {
@@ -98,6 +62,42 @@ IMA.startActuators = function() {
     }
   });
   IMA.cylon.start();
+};
+
+//start audio engine via node-core-audio
+IMA.startAudioEngine = function() {
+
+  //Create a core audio engine
+  var engine = coreaudio.createNewAudioEngine();
+  engine.setOptions({
+    inputChannels: 1,
+    outputChannels: 2,
+    sampleRate: 44100,
+    framesPerBuffer: 2048
+  });
+
+  var sample = 0;
+  //console.log(engine.getOptions());
+  var pitch = 0;
+  var sampleRateInHz = 44100;
+  var pitchInHz;
+  var threshold = 0.8; //number between 0 and 1 to cutoff successful detection;
+  var note = null;
+
+  engine.addAudioCallback(function(inputBuffer) {
+    frequency = detectPitchWad.detect(inputBuffer[0], sampleRateInHz, 130);
+    if(frequency < 11025) {
+      //console.log(frequency);
+      note = noteFromPitch.getNote(frequency);
+      if(IMA.config.env == 'edison') {
+        //if we are on edison - let's light up the actuators
+        IMA.cylon.lightLedNote(note);
+      }
+      console.log(note);
+    }
+
+    return inputBuffer;
+  });
 };
 
 //kick it off
